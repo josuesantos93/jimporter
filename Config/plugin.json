@@ -1,0 +1,12 @@
+{
+	"name" : "Joomla Importer",
+	"description" : "Joomla Importer from Croogo",
+
+	"author" : "josuesantos93",
+	"authorEmail" : "contato@josuesantos.net",
+	"authorUrl" : "http://josuesantos.net",
+
+	"dependencies": {
+		
+	}
+}
