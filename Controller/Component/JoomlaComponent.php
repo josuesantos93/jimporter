@@ -56,7 +56,8 @@ App::uses('Component', 'Controller');
             $sectionsJoomla = $this->sectionJoomla->find('All');
             
             foreach($sectionsJoomla as $section){
-                
+              $data = $this->excractTerm($section);
+              $term = $this->saveTerm($data);
             }
             
         }
@@ -65,7 +66,25 @@ App::uses('Component', 'Controller');
             
         }
         
-        private function excractTaxomany(){
-            
+        private function excractTerm($term, $taxonomy = NULL){
+              $data = array(
+                         'title' => $term['title'],
+                         'slug' => $term['alias'],
+                         'Taxonomy' => array(
+                            'parent_id' => $taxonomy
+                         )
+                         );
+              return $data;
+        }
+        
+        private function saveTerm($data){
+              $category = $this->termCroogo->findBySlug($data['slug']);
+              if(empty($category)){
+                     $term = $this->termCroogo->create($data);
+                     $termId = $this->termCroogo->saveAndGetId($term);
+              }else{
+                     $TermId = $category['Term']['id'];
+              }
+              
         }
  }
